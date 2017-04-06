@@ -83,6 +83,12 @@ export const fetchStudents = () => dispatch => {
 
 };
 
+export const fetchStudent = id => dispatch => {
+  axios.get(`/api/students/${id}`)
+    .then(res => dispatch(setStudent(res.data)))
+    .catch(err => console.error(`Fetching campus unsuccesful`, err));
+};
+
 //
 export const removeStudent = id => dispatch => {
   axios.delete(`/api/students/${id}`)

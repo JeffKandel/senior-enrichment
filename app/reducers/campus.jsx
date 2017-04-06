@@ -82,7 +82,12 @@ export const fetchCampuses = () => dispatch => {
   axios.get('/api/campuses')
     .then(res => dispatch(setCampuses(res.data)))
     .catch(err => console.error(`Fetching campuses unsuccesful`, err));
+};
 
+export const fetchCampus = id => dispatch => {
+  axios.get(`/api/campuses/${id}`)
+    .then(res => dispatch(setCampus(res.data)))
+    .catch(err => console.error(`Fetching campus unsuccesful`, err));
 };
 
 //
