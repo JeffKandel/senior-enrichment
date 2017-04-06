@@ -22,7 +22,7 @@ export const setStudents = (students) => ({
 
 export const setStudent = (student) => ({
   type: SET_SELECTED_STUDENT,
-  student: student
+  selectedStudent: student
 })
 
 export const createStudent = (student) => ({
@@ -53,7 +53,7 @@ export default function(state = initialState, action) {
       break;
 
     case SET_SELECTED_STUDENT:
-      newState.student = action.student;
+      newState.selectedStudent = action.selectedStudent;
       break;
 
     case CREATE_STUDENT:

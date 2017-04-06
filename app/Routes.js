@@ -36,12 +36,12 @@ const mapDispatch = dispatch => ({
   //Could by more DRY
   //But I choose to keep separate in case more logic is needed
   onStudentEnter: (nextRouterState) => {
-    const campusId = nextRouterState.params.id;
-    dispatch(fetchCampus(campusId));
-  },
-  onCampusEnter: (nextRouterState) => {
     const studentId = nextRouterState.params.id;
     dispatch(fetchStudent(studentId));
+  },
+  onCampusEnter: (nextRouterState) => {
+    const campusId = nextRouterState.params.id;
+    dispatch(fetchCampus(campusId));
   }
 });
 

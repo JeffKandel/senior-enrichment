@@ -24,7 +24,7 @@ export const setCampuses = (campuses) => ({
 
 export const setCampus = (campus) => ({
   type: SET_SELECTED_CAMPUS,
-  campus: campus
+  selectedCampus: campus
 })
 
 export const createCampus = (campus) => ({
@@ -54,7 +54,8 @@ export default function(state = initialState, action) {
       break;
 
     case SET_SELECTED_CAMPUS:
-      newState.campus = action.campus;
+      console.log('blerp', action);
+      newState.selectedCampus = action.selectedCampus;
       break;
 
     case CREATE_CAMPUS:

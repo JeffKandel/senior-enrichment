@@ -8,7 +8,7 @@ import CampusDetail from './CampusDetail';
 class CampusList extends Component {
   constructor(props) {
     super(props);
-
+    console.log('perps',props)
   }
 
   render() {
@@ -31,12 +31,6 @@ class CampusList extends Component {
                     <h4 className="media-heading tucked">
                       <span placeholder="Jean Doe">{campus.name}</span>
                     </h4>
-                    <h5 className="tucked">
-                      <span>{campus.email}</span>
-                    </h5>
-                    <h5 className="tucked">
-                      <span>{campus.phone}</span>
-                    </h5>
                   </Link>
                   <div className="media-right media-middle">
                   </div>
