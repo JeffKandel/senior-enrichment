@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import Root from './components/Root';
 import StudentList from './components/Student/StudentList.jsx';
-import StudentDetail from './components/Student/StudentDetail';
 import CampusList from './components/Campus/CampusList';
 import CampusDetail from './components/Campus/CampusDetail';
 import { fetchCampuses, fetchCampus } from './reducers/campus';
@@ -11,15 +10,14 @@ import { fetchStudents, fetchStudent } from './reducers/student';
 
 /* -----------------    COMPONENT     ------------------ */
 
-const Routes = ({ fetchInitialData, onStudentEnter, onCampusEnter }) => (
+const Routes = ({ fetchInitialData, onCampusEnter, clearURL }) => (
   <Router history={browserHistory}>
     <Route path="/" component={Root} onEnter={fetchInitialData}>
       <IndexRoute component={CampusList} />
       <Route path="students" component={StudentList} />
-      <Route path="students/:id" component={StudentDetail} onEnter={onStudentEnter} />
       <Route path="campuses" component={CampusList} />
       <Route path="campuses/:id" component={CampusDetail} onEnter={onCampusEnter} />
-      <Route path="*" component={CampusList} />
+      <Route path="*" component={CampusList} onEnter={clearURL}/>
     </Route>
   </Router>
 );
@@ -35,13 +33,12 @@ const mapDispatch = dispatch => ({
   },
   //Could by more DRY
   //But I choose to keep separate in case more logic is needed
-  onStudentEnter: (nextRouterState) => {
-    const studentId = nextRouterState.params.id;
-    dispatch(fetchStudent(studentId));
-  },
   onCampusEnter: (nextRouterState) => {
     const campusId = nextRouterState.params.id;
     dispatch(fetchCampus(campusId));
+  },
+  clearURL: (nextRouterState, replace) => {
+    replace('/')
   }
 });
 

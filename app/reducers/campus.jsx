@@ -12,9 +12,8 @@ const SET_SELECTED_CAMPUS = 'SET_SELECTED_CAMPUS';
 const CREATE_CAMPUS = 'CREATE_CAMPUS';
 const UPDATE_CAMPUS = 'UPDATE_CAMPUS';
 const DELETE_CAMPUS = 'DELETE_CAMPUS';
-// //Only dispatch these two alongside student.updateStudent action
-// const ADD_STUDENT_TO_CAMPUS = 'ADD_STUDENT_TO_CAMPUS';
-// const REMOVE_STUDENT_FROM_CAMPUS = 'REMOVE_STUDENT_FROM_CAMPUS';
+const ADD_STUDENT_TO_CAMPUS = 'ADD_STUDENT_TO_CAMPUS';
+const REMOVE_STUDENT_FROM_CAMPUS = 'REMOVE_STUDENT_FROM_CAMPUS';
 
 /* ------------   ACTION CREATORS     ------------------ */
 export const setCampuses = (campuses) => ({
@@ -42,6 +41,16 @@ export const deleteCampus = (campusId) => ({
   campusId: campusId
 })
 
+export const addStudentToCampus = (student) => ({
+  type: ADD_STUDENT_TO_CAMPUS,
+  student: student
+})
+
+export const removeStudentFromCampus = (student) => ({
+  type: REMOVE_STUDENT_FROM_CAMPUS,
+  student: student
+})
+
 /* ------------       REDUCERS     ------------------ */
 
 export default function(state = initialState, action) {
@@ -54,24 +63,32 @@ export default function(state = initialState, action) {
       break;
 
     case SET_SELECTED_CAMPUS:
-      console.log('blerp', action);
       newState.selectedCampus = action.selectedCampus;
       break;
 
     case CREATE_CAMPUS:
-      newState.campuses.concat([action.campus]);
+      newState.campuses = newState.campuses.concat([action.campus]);
       break;
 
     case UPDATE_CAMPUS:
-      newState.campuses.map((campus) => (
+      newState.campuses = newState.campuses.map((campus) => (
         (campus.id === action.campus.id) ? action.campus : campus
       ))
       break;
 
     case DELETE_CAMPUS:
-      newState.campuses.filter((currentCampus) => (
+      newState.campuses = newState.campuses.filter((currentCampus) => (
         (currentCampus.id !== action.campusId)
       ))
+      break;
+
+    case ADD_STUDENT_TO_CAMPUS:
+      newState.selectedCampus.students = newState.selectedCampus.students.concat([action.student])
+      break;
+
+    case REMOVE_STUDENT_FROM_CAMPUS:
+      newState.selectedCampus.students =
+        newState.selectedCampus.students.filter((student) => (student.id !== action.student.id))
       break;
 
     default:
@@ -80,7 +97,6 @@ export default function(state = initialState, action) {
   }
 
   return newState;
-
 }
 
 

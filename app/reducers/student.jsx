@@ -54,31 +54,28 @@ export default function(state = initialState, action) {
 
     case SET_SELECTED_STUDENT:
       newState.selectedStudent = action.selectedStudent;
-      break;
+      break
 
     case CREATE_STUDENT:
-      newState.students.concat([action.student]);
-      break;
-
+      newState.students = newState.students.concat([action.student]);
+      break
     case UPDATE_STUDENT:
-      newState.students.map((student) => (
+      newState.students = newState.students.map((student) => (
         (student.id === action.student.id) ? action.student : student
       ))
       break;
 
     case DELETE_STUDENT:
-      newState.students.filter((currentStudent) => (
+      newState.students = newState.students.filter((currentStudent) => (
         (currentStudent.id !== action.studentId)
       ))
       break;
 
     default:
       return state;
-
   }
 
   return newState;
-
 }
 
 /* ------------       DISPATCHERS     ------------------ */
@@ -117,6 +114,7 @@ export const addStudent = student => dispatch => {
 
 export const editStudent = (id, student) => dispatch => {
   axios.put(`/api/students/${id}`, student)
-    .then(res => dispatch(updateStudent(res.data)))
+    .then(res => {
+      dispatch(updateStudent(res.data))})
     .catch(err => console.error(`Updating student: ${student} unsuccesful`, err));
 };

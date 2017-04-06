@@ -2,6 +2,7 @@
 const campusRouter = require('express').Router()
 const db = require('../../db')
 const Campus = db.model('campus');
+const Student = db.model('student');
 
 
 //pick up at :albumId and process beforehand

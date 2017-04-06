@@ -1,19 +1,26 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
+import { editStudent } from '../../reducers/student.jsx'
+import { addStudentToCampus, removeStudentFromCampus } from '../../reducers/campus.jsx'
 
 class CampusDetail extends React.Component {
 
   render() {
     const selectedCampus = this.props.campus.selectedCampus;
-    if(!selectedCampus) return <div />
+    if (!selectedCampus) return <div />
+
+      console.log('test',this.props)
     return (
       <div className="container">
         <div className="panel panel-warning">
           <div className="panel-heading">
-            <h2 className="panel-title large-font">
-            <span>Students at {selectedCampus.name}</span>
-            <i className="fa fa-plus pull-right" aria-hidden="true"></i>
+            <h2 className="panel-title">
+              <span>Students at {selectedCampus.name}</span>
+              <button
+              className="btn btn-primary btn-xs pull-right"
+              onClick = { () => {this.props.addStudentToCampus(this.props.student.students[2], selectedCampus.id)}}
+              ><i className="fa fa-plus"></i></button>
             </h2>
           </div>
           <ul className="list-group">
@@ -24,15 +31,16 @@ class CampusDetail extends React.Component {
                   <div className="media-left media-middle icon-container">
                     <img className="media-object img-circle" src={student.image} />
                   </div>
-                  <Link
-                    className="media-body"
-                    activeClassName="active"
-                    to={`/students/${student.id}`}>
                     <h4 className="media-heading tucked">
                       <span placeholder="Jean Doe">{student.name}</span>
-                      <i className="fa fa-times pull-right" aria-hidden="true"></i>
+                      <button
+                        value={student.id}
+                        className="btn btn-warning btn-xs pull-right"
+                        onClick={() => {this.props.removeStudentFromCampus(student)}}
+                      >
+                        <i className="fa fa-times" />
+                      </button>
                     </h4>
-                  </Link>
                   <div className="media-right media-middle">
                   </div>
                 </div>
@@ -46,6 +54,20 @@ class CampusDetail extends React.Component {
 }
 const mapProps = ({ campus, student }) => ({ campus, student });
 
-const mapDispatch = null;
+const mapDispatch = (dispatch) => {
+  return {
+    removeStudentFromCampus(student) {
+      const updatedStudent = Object.assign({}, student, { campusId: null })
+      dispatch(removeStudentFromCampus(updatedStudent));
+      dispatch(editStudent(updatedStudent.id, updatedStudent));
+    },
+    addStudentToCampus(student, campusId) {
+      console.log('tast',student);
+      const updatedStudent = Object.assign({}, student, { campusId: campusId })
+      dispatch(addStudentToCampus(student));
+      dispatch(editStudent(updatedStudent.id, updatedStudent));
 
+    }
+  };
+};
 export default connect(mapProps, mapDispatch)(CampusDetail);

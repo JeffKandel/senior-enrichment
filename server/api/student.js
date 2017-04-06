@@ -2,7 +2,7 @@
 const studentRouter = require('express').Router()
 const db = require('../../db')
 const Student = db.model('student');
-
+const Campus = db.model('campus');
 
 //pick up at :albumId and process beforehand
 studentRouter.param('studentId', function (req, res, next, id) {
@@ -58,7 +58,7 @@ studentRouter.put('/:studentId', (req, res, next) => {
         err.status = 400;
         throw err
       }
-      res.status(204).json(student);
+      res.status(200).json(student);
     })
     .catch(next);
 })

@@ -8,7 +8,6 @@ import CampusDetail from './CampusDetail';
 class CampusList extends Component {
   constructor(props) {
     super(props);
-    console.log('perps',props)
   }
 
   render() {
