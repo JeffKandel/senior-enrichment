@@ -49,6 +49,13 @@ export default function(state = initialState, action) {
   const newState = Object.assign({}, state);
 
   switch (action.type) {
+    case SET_CAMPUSES:
+      newState.campuses = action.campuses;
+      break;
+
+    case SET_SELECTED_CAMPUS:
+      newState.campus = action.campus;
+      break;
 
     case CREATE_CAMPUS:
       newState.campuses.concat([action.campus]);

@@ -1,14 +1,17 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-class test extends React.Component {
-
+class Test extends React.Component {
  render(){
-    return (<div>Navbar</div>)
+    return <div>Navbar</div>
   }
 }
 const mapProps = null;
 
 const mapDispatch = null;
 
-export default connect(mapProps, mapDispatch)(test);
+
+
+ const TestContainer = connect(mapProps, mapDispatch)(Test);
+ console.log('test',TestContainer);
+ export default TestContainer

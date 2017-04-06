@@ -14,12 +14,12 @@ import { fetchStudents, fetchStudent } from './reducers/student';
 const Routes = ({ fetchInitialData, onStudentEnter, onCampusEnter }) => (
   <Router history={browserHistory}>
     <Route path="/" component={Root} onEnter={fetchInitialData}>
-      <IndexRoute component={Root} />
-      <Route path="students" component={Root} />
-      <Route path="students/:id" component={Root} onEnter={onStudentEnter} />
-      <Route path="campuses" component={Root} />
-      <Route path="campuses/:id" component={Root} onEnter={onCampusEnter} />
-      <Route path="*" component={Root} />
+      <IndexRoute component={CampusList} />
+      <Route path="students" component={StudentList} />
+      <Route path="students/:id" component={StudentDetail} onEnter={onStudentEnter} />
+      <Route path="campuses" component={CampusList} />
+      <Route path="campuses/:id" component={CampusDetail} onEnter={onCampusEnter} />
+      <Route path="*" component={CampusList} />
     </Route>
   </Router>
 );
@@ -32,7 +32,6 @@ const mapDispatch = dispatch => ({
   fetchInitialData: () => {
     dispatch(fetchStudents());
     dispatch(fetchCampuses());
-    done();
   },
   //Could by more DRY
   //But I choose to keep separate in case more logic is needed

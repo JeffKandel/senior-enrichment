@@ -48,6 +48,13 @@ export default function(state = initialState, action) {
   const newState = Object.assign({}, state);
 
   switch (action.type) {
+    case SET_STUDENTS:
+      newState.students = action.students;
+      break;
+
+    case SET_SELECTED_STUDENT:
+      newState.student = action.student;
+      break;
 
     case CREATE_STUDENT:
       newState.students.concat([action.student]);
