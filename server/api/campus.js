@@ -7,7 +7,7 @@ const Student = db.model('student');
 
 //pick up at :albumId and process beforehand
 campusRouter.param('campusId', function (req, res, next, id) {
-  Campus.findById(id)
+  Campus.scope('studentIds').findById(id)
   .then(function (campus) {
     if (!campus) {
       const err = Error('campus not found');
@@ -22,7 +22,7 @@ campusRouter.param('campusId', function (req, res, next, id) {
 });
 
 campusRouter.get('/', (req, res, next) => {
-  Campus.findAll()
+  Campus.scope('studentIds').findAll()
     .then(campuses => {
       if (!campuses) {
         const err = Error('campuses not found');
