@@ -10,7 +10,6 @@ class CampusDetail extends React.Component {
     const selectedCampus = this.props.campus.selectedCampus;
     if (!selectedCampus) return <div />
 
-      console.log('test',this.props)
     return (
       <div className="container">
         <div className="panel panel-warning">

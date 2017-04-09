@@ -19,7 +19,7 @@ const db = module.exports = new Sequelize(connectionString, {
 require('./models')
 
 // sync the db, creating it if necessary
-function sync(force = false, retries = 0, maxRetries = 5) {
+function sync(force = true, retries = 0, maxRetries = 5) {
   return db.sync({ force })
     .then(ok => console.log(`Synced models to db ${connectionString}`))
     .catch(fail => {
@@ -42,27 +42,3 @@ function sync(force = false, retries = 0, maxRetries = 5) {
 }
 
 db.didSync = sync();
-
-
-
-// db.model('campus')
-// .findOrCreate({
-//    where: {
-//       name: 'Saem Campus',
-//       image: 'test'
-
-//     }
-//   }
-// )
-
-// db.model('student')
-// .findOrCreate({
-//    where: {
-//       name: 'sam',
-//       email: 'saem@a.com',
-//       status: 'current',
-//       campusId: 2
-
-//     }
-//   }
-// )

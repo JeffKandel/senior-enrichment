@@ -14,6 +14,14 @@ class CampusList extends Component {
     const campuses = this.props.campus.campuses
     return (
       <div className="container">
+        <div className="panel panel-warning">
+          <div className="panel-heading">
+            <h2 className="panel-title large-font">
+            <span>Campuses</span>
+            <i className="fa fa-plus pull-right" aria-hidden="true"></i>
+            </h2>
+          </div>
+        </div>
         <div className="user-list">
         {
           campuses
