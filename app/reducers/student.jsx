@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const initialState = {
-  students: [],
+  currentStudents: [],
   selectedStudent: {}
 }
 
@@ -49,7 +49,7 @@ export default function(state = initialState, action) {
 
   switch (action.type) {
     case SET_STUDENTS:
-      newState.students = action.students;
+      newState.currentStudents = action.students;
       break;
 
     case SET_SELECTED_STUDENT:
@@ -57,17 +57,17 @@ export default function(state = initialState, action) {
       break
 
     case CREATE_STUDENT:
-      newState.students = newState.students.concat([action.student]);
+      newState.currentStudents = newState.currentStudents.concat([action.student]);
       break
     case UPDATE_STUDENT:
-      newState.students = newState.students.map((student) => (
+      newState.currentStudents = newState.currentStudents.map((student) => (
         (student.id === action.student.id) ? action.student : student
       ))
       break;
 
     case DELETE_STUDENT:
-      newState.students = newState.students.filter((currentStudent) => (
-        (currentStudent.id !== action.studentId)
+      newState.currentStudents = newState.currentStudents.filter((student) => (
+        (student.id !== action.studentId)
       ))
       break;
 

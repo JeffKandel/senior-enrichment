@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
-import student from './student.jsx'
-import campus from './campus.jsx'
+import students from './student.jsx'
+import campuses from './campus.jsx'
 
-export default combineReducers({ student, campus });
+export default combineReducers({ students, campuses });
 
-export const selectCampusStudents = function(state){
-  const campusStudentIds = state.campus.selectedCampus.campusStudentIds;
+export const selectCampusStudents = (state) => {
+  const campusStudentIds = state.campus.selectedCampus.students;
   return state.student.students.filter((student) => (campusStudentIds.includes(student.id)))
 }

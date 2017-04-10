@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const initialState = {
-  campuses: [],
+  currentCampuses: [],
   selectedCampus: {}
 }
 
@@ -59,7 +59,7 @@ export default function(state = initialState, action) {
 
   switch (action.type) {
     case SET_CAMPUSES:
-      newState.campuses = action.campuses;
+      newState.currentCampuses = action.campuses;
       break;
 
     case SET_SELECTED_CAMPUS:
@@ -67,17 +67,17 @@ export default function(state = initialState, action) {
       break;
 
     case CREATE_CAMPUS:
-      newState.campuses = newState.campuses.concat([action.campus]);
+      newState.currentCampuses = newState.currentCampuses.concat([action.campus]);
       break;
 
     case UPDATE_CAMPUS:
-      newState.campuses = newState.campuses.map((campus) => (
+      newState.currentCampuses = newState.currentCampuses.map((campus) => (
         (campus.id === action.campus.id) ? action.campus : campus
       ))
       break;
 
     case DELETE_CAMPUS:
-      newState.campuses = newState.campuses.filter((currentCampus) => (
+      newState.currentCampuses = newState.currentCampuses.filter((currentCampus) => (
         (currentCampus.id !== action.campusId)
       ))
       break;

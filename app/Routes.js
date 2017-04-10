@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import Root from './components/Root';
-import StudentList from './components/Student/StudentList.jsx';
+import StudentList from './components/Student/StudentList';
+import StudentDetail from './components/Student/StudentDetail'
 import CampusList from './components/Campus/CampusList';
 import CampusDetail from './components/Campus/CampusDetail';
 import { fetchCampuses, fetchCampus } from './reducers/campus';
@@ -15,6 +16,7 @@ const Routes = ({ fetchInitialData, onCampusEnter, clearURL }) => (
     <Route path="/" component={Root} onEnter={fetchInitialData}>
       <IndexRoute component={CampusList} />
       <Route path="students" component={StudentList} />
+      <Route path="students/:id" component={StudentDetail} />
       <Route path="campuses" component={CampusList} />
       <Route path="campuses/:id" component={CampusDetail} onEnter={onCampusEnter} />
       <Route path="*" component={CampusList} onEnter={clearURL}/>

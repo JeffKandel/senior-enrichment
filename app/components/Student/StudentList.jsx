@@ -1,20 +1,22 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import List from '../List'
-class StudentList extends React.Component {
-  render(){
-    console.log(this.props);
-    const students = this.props.student.students
 
+class StudentList extends React.Component {
+  render() {
     return (
-      <List type='Student'/>
+      <List
+        listType = 'student'
+        listText = 'All Students'
+        students = {this.props.students.currentStudents}
+      />
     )
   }
 }
 
-const mapState = ({ student }) => ({ student });
+const mapState = ({ students, campuses }) => ({ students, campuses });
 
-const mapDispatch = { };
+const mapDispatch = {};
 
 export default connect(mapState, mapDispatch)(StudentList);
 

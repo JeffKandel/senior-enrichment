@@ -11,7 +11,7 @@ module.exports = {
   context: __dirname,
   devtool: 'source-map',
   resolve: {
-    extensions: ['', '.js', '.jsx','html']
+    extensions: ['', '.js', '.jsx','html','.css']
   },
   module: {
     loaders: [
