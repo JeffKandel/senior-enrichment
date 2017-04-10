@@ -42,7 +42,7 @@ campusRouter.post('/', (req, res, next) => {
         err.status = 400;
         throw err
       }
-      res.status(204).json(campus);
+      res.status(200).json(campus);
     })
     .catch(next);
 })
@@ -59,7 +59,7 @@ campusRouter.put('/:campusId', (req, res, next) => {
         err.status = 400;
         throw err
       }
-      res.status(204).json(campus);
+      res.status(200).json(campus);
     })
     .catch(next);
 })
@@ -72,7 +72,7 @@ campusRouter.delete('/:campusId', (req, res, next) => {
         err.status = 400;
         throw err
       }
-      res.status(204).json(destroyedBool);
+      res.status(200).json(destroyedBool);
     })
     .catch(next);
 })

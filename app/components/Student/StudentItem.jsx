@@ -11,10 +11,11 @@ export default function(props) {
       <div className="media">
           <h4 className="media-heading tucked">
             <Link to={`/students/${student.id}`}>{student.name}</Link>
-            <button
+              <button
               value={student.id}
               className="btn btn-warning btn-xs pull-right"
-            >
+              onClick={() => props.handleRemove(student.id)}
+              >
               <i className="fa fa-times" />
             </button>
           </h4>
@@ -22,43 +23,3 @@ export default function(props) {
     </div>
   )
 }
-// const mapProps = ({ campus, student }) => ({ campus, student });
-
-// const mapDispatch = (dispatch) => {
-//   return {
-//     removeStudentFromCampus(student) {
-//       const updatedStudent = Object.assign({}, student, { campusId: null })
-//       dispatch(removeStudentFromCampus(updatedStudent));
-//       dispatch(editStudent(updatedStudent.id, updatedStudent));
-//     },
-//     addStudentToCampus(student, campusId) {
-//       console.log('tast',student);
-//       const updatedStudent = Object.assign({}, student, { campusId: campusId })
-//       dispatch(addStudentToCampus(student));
-//       dispatch(editStudent(updatedStudent.id, updatedStudent));
-
-//     }
-//   };
-// };
-// export default connect(mapProps, mapDispatch)(Item);
-
-// <div className="panel panel-warning">
-//           <div className="panel-heading">
-//             <h2 className="panel-title">
-//               <span>Students at {selectedCampus.name}</span>
-//               <button
-//               className="btn btn-primary btn-xs pull-right"
-//               onClick = { () => {this.props.addStudentToCampus(this.props.student.students[2], selectedCampus.id)}}
-//               ><i className="fa fa-plus"></i></button>
-//             </h2>
-//           </div>
-//           <ul className="list-group">
-//             {
-//               selectedCampus.students && selectedCampus.students
-//               .map(student => (<div key = {student.id} className="list-group-item min-content user-item">
-                        // onClick={() => {this.props.removeprops.studentFromCampus(props.student)}}
-
-//               </div>))
-//             }
-//           </ul>
-//         </div>

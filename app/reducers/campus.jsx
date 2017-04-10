@@ -128,8 +128,11 @@ export const removeCampus = id => dispatch => {
 };
 
 export const addCampus = campus => dispatch => {
-  axios.post('/api/campuses', campus)
-    .then(res => dispatch(createCampus(res.data)))
+  return axios.post('/api/campuses', campus)
+    .then(res => {
+      dispatch(createCampus(res.data))
+      return res.data;
+    })
     .catch(err => console.error(`Creating campus: ${campus} unsuccesful`, err));
 };
 

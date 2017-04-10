@@ -1,18 +1,31 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import List from '../List'
+import CampusItem from './CampusItem'
+import { removeCampus } from '../../reducers/campus'
 
 /* -----------------    COMPONENT     ------------------ */
 
 class CampusList extends Component {
   render() {
     return (
-      <List
-        listType = 'campus'
-        listText = 'All Campuses'
-        campuses = {this.props.campuses.currentCampuses}
-      />
+      <div className="container">
+      <div className="panel panel-warning">
+        <div className="panel-heading">
+          <h2 className="panel-title large-font">
+          <span>All Campuses</span>
+          <Link to={`/campuses/add`}>
+            <i className="fa fa-plus pull-right" aria-hidden="true" />
+          </Link>
+          </h2>
+        </div>
+        <div className="user-list">
+          <ul className="list-group">
+            {this.props.campuses.currentCampuses.map((campus) => (<CampusItem handleRemove={this.props.handleRemove} key={campus.id} campus={campus} />))}
+          </ul>
+        </div>
+      </div>
+    </div>
     )
   }
 }
@@ -21,41 +34,10 @@ class CampusList extends Component {
 
 const mapState = ({ campuses }) => ({ campuses });
 
-const mapDispatch = {};
+const mapDispatch = dispatch => ({
+  handleRemove: (campusId) => {
+    dispatch(removeCampus(campusId))
+  },
+});
 
 export default connect(mapState, mapDispatch)(CampusList);
-
-// <div className="container">
-//   <div className="panel panel-warning">
-//     <div className="panel-heading">
-//       <h2 className="panel-title large-font">
-//       <span>Campuses</span>
-//       <i className="fa fa-plus pull-right" aria-hidden="true"></i>
-//       </h2>
-//     </div>
-//   </div>
-//   <div className="user-list">
-//   {
-//     campuses
-//       .map(campus => (
-//         <div key = {campus.id} className="list-group-item min-content user-item">
-//           <div className="media">
-//             <div className="media-left media-middle icon-container">
-//               <img className="media-object img-circle" src={campus.image} />
-//             </div>
-//             <Link
-//               className="media-body"
-//               activeClassName="active"
-//               to={`/campuses/${campus.id}`}>
-//               <h4 className="media-heading tucked">
-//                 <span placeholder="Jean Doe">{campus.name}</span>
-//               </h4>
-//             </Link>
-//             <div className="media-right media-middle">
-//             </div>
-//           </div>
-//         </div>)
-//       )
-//   }
-//   </div>
-// </div>

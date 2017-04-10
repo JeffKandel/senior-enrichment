@@ -41,7 +41,7 @@ studentRouter.post('/', (req, res, next) => {
         err.status = 400;
         throw err
       }
-      res.status(204).json(student);
+      res.status(200).json(student);
     })
     .catch(next);
 })
@@ -71,7 +71,7 @@ studentRouter.delete('/:studentId', (req, res, next) => {
         err.status = 400;
         throw err
       }
-      res.status(204).json(destroyedBool);
+      res.status(200).json(destroyedBool);
     })
     .catch(next);
 })
