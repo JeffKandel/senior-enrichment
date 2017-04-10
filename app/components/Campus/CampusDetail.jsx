@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import List from '../List'
 
 /* -----------------    COMPONENT     ------------------ */
 
@@ -9,7 +8,7 @@ class CampusDetail extends Component {
   render() {
     return (
       <div>
-      detail
+        Coming Soon... Campus Details
       </div>
     )
   }
