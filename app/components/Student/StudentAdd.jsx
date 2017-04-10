@@ -13,7 +13,7 @@ class StudentAdd extends React.Component {
     this.state = {
       name: '',
       email: '',
-      campus: ''
+      campusId: ''
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -75,14 +75,14 @@ class StudentAdd extends React.Component {
         </div>
         <div className="form-group">
           <label
-          htmlFor="campus"
+          htmlFor="campusId"
           className="control-label col-xs-2"
 
           >Student Campus:</label>
           <div className="col-xs-10">
             <select
-            value={this.state.campus}
-            name="campus"
+            value={this.state.campusId}
+            name="campusId"
             onChange={this.handleInputChange}
             >
               {this.props.campuses.currentCampuses.map((opt)=>(<option key={opt.id} value={opt.id}>{opt.name}</option>))}
@@ -111,7 +111,6 @@ const mapState = ({campuses}) => ({campuses});
 
 const mapDispatch = dispatch => ({
   handleAdd: (newStudent) => {
-      console.log("newStudent", newStudent);
     dispatch(addStudent(newStudent))
       .then((student) => {
         browserHistory.push(`/students/${student.id}`)

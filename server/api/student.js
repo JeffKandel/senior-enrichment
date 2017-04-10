@@ -5,19 +5,19 @@ const Student = db.model('student');
 const Campus = db.model('campus');
 
 //pick up at :albumId and process beforehand
-studentRouter.param('studentId', function (req, res, next, id) {
+studentRouter.param('studentId', function(req, res, next, id) {
   Student.findById(id)
-  .then(function (student) {
-    if (!student) {
-      const err = Error('Student not found');
-      err.status = 404;
-      throw err
-    }
-    req.student = student;
-    next();
-    return null; // silences bluebird warning about promises inside of next
-  })
-  .catch(next);
+    .then(function(student) {
+      if (!student) {
+        const err = Error('Student not found');
+        err.status = 404;
+        throw err
+      }
+      req.student = student;
+      next();
+      return null; // silences bluebird warning about promises inside of next
+    })
+    .catch(next);
 });
 
 studentRouter.get('/', (req, res, next) => {
